@@ -6,17 +6,15 @@
 
 composer引入方式: 
 
-```
-    "require": {
-        "ocxco/wxdecrypt": "dev-master",
-    },
+```shell
+    composer require ouranohsong/wxdecrypt
 ```
 
 详细使用方式见包内demo.php
 ```
 <?php
 
-include_once "vendor/autoload.php";
+require "vendor/autoload.php";
 
 $appid = 'wx4f4bc4dec97d474b';
 $sessionKey = 'tiihtNczf5v6AKRyjwEUhQ==';
