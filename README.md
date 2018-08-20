@@ -1,5 +1,7 @@
 # wxdecrypt
 
+[![Build Status](https://travis-ci.org/ouranoshong/wxdecrypt.svg?branch=master)](https://travis-ci.org/ouranoshong/wxdecrypt)
+
 微信小程序服务端解密api，每次使用都需要去官方下载，总是不太方便
  
 同时官方示例中PHP代码版本过老，还在使用与类名同名的构造函数，不能直接使用，因此修改并迁移官方示例至composer
