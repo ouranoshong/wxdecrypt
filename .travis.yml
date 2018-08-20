@@ -4,12 +4,14 @@ sudo: false
 
 cache:
   directories:
-  - $HOME/.composer/cache
-  - vendor
+    - $HOME/.composer/cache
+    - vendor
 
 php:
-- 7.0
-- 5.6
+  - 7.2
+  - 7.1
+  - 7.0
+  - 5.6
 
 matrix:
   fast_finish: true
@@ -17,22 +19,18 @@ matrix:
 # We only build pushes to master and pull requests
 branches:
   only:
-  - master
+    - master
 
 before_install:
 # Disable XDebug speeds up composer
-- phpenv config-rm xdebug.ini || return 0
-- composer config -g github-oauth.github.com $GITHUB_ACCESS_TOKEN
+  - phpenv config-rm xdebug.ini || return 0
+  - composer config -g github-oauth.github.com $GITHUB_ACCESS_TOKEN
 
 install:
-- travis_retry composer install --no-interaction --prefer-dist --ignore-platform-reqs
-# Re-enable XDebug for phpunit code coverage
-- echo "zend_extension = xdebug.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-- mkdir -p build/logs
+  - travis_retry composer install --no-interaction --prefer-dist --ignore-platform-reqs
+  # Re-enable XDebug for phpunit code coverage
+  - echo "zend_extension = xdebug.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - mkdir -p build/logs
 
 script:
-- phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
-
-after_success:
-- travis_retry wget https://github.com/satooshi/php-coveralls/releases/download/v1.0.0/coveralls.phar
-- travis_retry php coveralls.phar -v
+  - phpunit -c phpunit.xml.dist
