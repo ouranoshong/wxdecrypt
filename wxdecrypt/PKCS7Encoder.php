@@ -13,8 +13,8 @@ class PKCS7Encoder
 
     /**
      * 对需要加密的明文进行填充补位
-     * @param $text 需要进行填充补位操作的明文
-     * @return 补齐明文字符串
+     * @param $text string 需要进行填充补位操作的明文
+     * @return string 补齐明文字符串
      */
     function encode( $text )
     {
@@ -23,7 +23,7 @@ class PKCS7Encoder
         //计算需要填充的位数
         $amount_to_pad = PKCS7Encoder::$block_size - ( $text_length % PKCS7Encoder::$block_size );
         if ( $amount_to_pad == 0 ) {
-            $amount_to_pad = PKCS7Encoder::block_size;
+            $amount_to_pad = PKCS7Encoder::$block_size;
         }
         //获得补位所用的字符
         $pad_chr = chr( $amount_to_pad );
@@ -36,8 +36,8 @@ class PKCS7Encoder
 
     /**
      * 对解密后的明文进行补位删除
-     * @param decrypted 解密后的明文
-     * @return 删除填充补位后的明文
+     * @param $text string 解密后的明文
+     * @return string 删除填充补位后的明文
      */
     function decode($text)
     {

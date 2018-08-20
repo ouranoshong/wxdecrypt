@@ -20,7 +20,7 @@ class Prpcrypt
      * 对密文进行解密
      * @param string $aesCipher 需要解密的密文
      * @param string $aesIV 解密的初始向量
-     * @return string 解密得到的明文
+     * @return array 解密得到的明文
      */
     public function decrypt( $aesCipher, $aesIV )
     {
@@ -35,7 +35,8 @@ class Prpcrypt
             $decrypted = mdecrypt_generic($module, $aesCipher);
             mcrypt_generic_deinit($module);
             mcrypt_module_close($module);
-        } catch (Exception $e) {
+
+        } catch (\Exception $e) {
             return array(ErrorCode::$IllegalBuffer, null);
         }
 
@@ -45,7 +46,7 @@ class Prpcrypt
             $pkc_encoder = new PKCS7Encoder;
             $result = $pkc_encoder->decode($decrypted);
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             //print $e;
             return array(ErrorCode::$IllegalBuffer, null);
         }
