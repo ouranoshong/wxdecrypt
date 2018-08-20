@@ -17,6 +17,8 @@
         "psr-4" : {
             "WxDecrypt\\":"wxdecrypt"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.3"
     }
-
 }
