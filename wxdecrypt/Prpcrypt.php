@@ -36,6 +36,8 @@ class Prpcrypt
             mcrypt_generic_deinit($module);
             mcrypt_module_close($module);
 
+            var_dump($decrypted);
+
         } catch (\Exception $e) {
             return array(ErrorCode::$IllegalBuffer, null);
         }
